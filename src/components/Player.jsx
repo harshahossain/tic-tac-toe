@@ -5,11 +5,13 @@ export default function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
 
   function handleClick() {
-    setIsEditing(!isEditing);
+    setIsEditing((prevState) => !prevState);
   }
   let playerName = <span className="player-Name">{name}</span>;
   if (isEditing) {
-    playerName = <input type="text" placeholder="Enter Name"></input>;
+    playerName = (
+      <input type="text" value={name} placeholder="Enter Name" required></input>
+    );
   }
   return (
     <li>
