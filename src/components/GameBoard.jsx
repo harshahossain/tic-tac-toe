@@ -6,7 +6,7 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
   //
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -15,9 +15,10 @@ export default function GameBoard() {
       const updatedBoard = [
         ...prevGameBoard.map((innerArray) => [...innerArray]),
       ]; //following immutable way//need to map cause nested arrays//need to make the new const cause how javascirpt shedules changes
-      updatedBoard[rowIndx][colIndx] = "X";
+      updatedBoard[rowIndx][colIndx] = activePlayerSymbol;
       return updatedBoard;
     });
+    onSelectSquare();
   }
 
   return (
