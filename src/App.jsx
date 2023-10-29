@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import mainLogo from "/game-logo.png";
-import Player from "./components/Player";
-import GameBoard from "./components/GameBoard";
-import Log from "./components/Log";
+import Player from "./components/Player.jsx";
+import GameBoard from "./components/GameBoard.jsx";
+import Log from "./components/Log.jsx";
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
@@ -47,7 +47,7 @@ function App() {
           />
         </ol>
         <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
-        <Log />
+        <Log turns={gameTurns} />
       </div>
     </>
   );
