@@ -20,17 +20,7 @@ function derivedActivePlayer(gameTurns) {
   }
   return currPlayer;
 }
-
-function App() {
-  const [players, setPlayers] = useState({
-    X: "Player 1",
-    Y: "Player 2",
-  });
-  const [gameTurns, setGameTurns] = useState([]);
-  //const [activePlayer, setActivePlayer] = useState("X");
-
-  const activePlayer = derivedActivePlayer(gameTurns);
-
+function deriveGameBoard(gameTurns) {
   let gameBoard = [...initialGameBoard.map((array) => [...array])]; //otherwise gameboard wont reset because we werent immuting the initial gameboard before
 
   for (const turn of gameTurns) {
@@ -38,7 +28,9 @@ function App() {
     const { row, col } = square;
     gameBoard[row][col] = player;
   }
-
+  return gameBoard;
+}
+function deriveWinner(gameBoard, players) {
   let winner;
 
   for (const combination of WINNING_COMBINATIONS) {
@@ -56,6 +48,22 @@ function App() {
       winner = players[firstSquareSymbol];
     }
   }
+  return winner;
+}
+
+function App() {
+  const [players, setPlayers] = useState({
+    X: "Player 1",
+    Y: "Player 2",
+  });
+  const [gameTurns, setGameTurns] = useState([]);
+  //const [activePlayer, setActivePlayer] = useState("X");
+
+  const activePlayer = derivedActivePlayer(gameTurns);
+
+  const gameBoard = deriveGameBoard(gameTurns);
+
+  const winner = deriveWinner(gameBoard, players);
 
   const hasDraw = gameTurns.length === 9 && !winner;
 
