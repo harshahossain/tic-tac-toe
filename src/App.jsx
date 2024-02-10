@@ -45,7 +45,8 @@ function deriveWinner(gameBoard, players) {
       firstSquareSymbol === secondSquareSymbol &&
       firstSquareSymbol === thirdSquareSymbol
     ) {
-      winner = players[firstSquareSymbol];
+      winner = firstSquareSymbol;
+      // was players[firstSquareSymbol] but bugged
     }
   }
   return winner;
